@@ -3,7 +3,6 @@ import RegisterProductView from '../views/product/RegisterProductView.vue'
 import SeeProductsView from '../views/product/SeeProductsView.vue'
 
 import RegisterCustomerView from '../views/customer/RegisterCustomerView.vue'
-import SeeCustomerView from '../views/customer/SeeCustomerView.vue'
 
 import EditCustomerView from '../views/customer/EditCustomerView.vue'
 

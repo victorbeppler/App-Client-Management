@@ -43,8 +43,12 @@ export default {
       this.customers = JSON.parse(localStorage.getItem('customers')) || []
     },
     editCustomer(customerId) {
-      // Implemente a lógica de edição aqui
-      console.log('Editar cliente:', customerId)
+      this.$router.push({
+        name: 'edit-customer',
+        params: {
+          id: customerId
+        }
+      })
     },
     deleteCustomer(customerId) {
       this.customers = this.customers.filter((customer) => customer.id !== customerId)
