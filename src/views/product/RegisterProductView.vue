@@ -45,15 +45,23 @@ export default {
     return {
       product: {
         name: '',
-        active: 'true'
+        price: 0,
+        quantity: 0,
+        description: '',
+        active: true
       }
     }
   },
   methods: {
     submitForm() {
-      // Aqui você pode adicionar a lógica para enviar os dados do formulário,
-      // por exemplo, fazendo uma requisição HTTP para um backend.
+      let products = JSON.parse(localStorage.getItem('products')) || []
+      products.push(this.product)
+      localStorage.setItem('products', JSON.stringify(products))
       console.log('Produto cadastrado:', this.product)
+      this.resetForm()
+    },
+    resetForm() {
+      this.product = { name: '', price: 0, quantity: 0, description: '', active: true }
     }
   }
 }
