@@ -2,9 +2,6 @@
   <div class="product-list">
     <div v-for="product in products" :key="product.id" class="product-card">
       <h3>{{ product.name }}</h3>
-      <p>Preço: {{ product.price }}</p>
-      <p>Estoque: {{ product.quantity }}</p>
-      <p>Descrição: {{ product.description }}</p>
       <p>Status: {{ product.active ? 'Ativo' : 'Inativo' }}</p>
       <button @click="editProduct(product.id)" disabled>Editar</button>
       <button @click="deleteProduct(product.id)">Excluir</button>

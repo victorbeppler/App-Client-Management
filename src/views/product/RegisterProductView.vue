@@ -6,18 +6,6 @@
         <label for="productName">Nome</label>
         <input id="productName" v-model="product.name" type="text" required class="input" />
       </div>
-      <div class="field">
-        <label for="productPrice">Preço</label>
-        <input id="productPrice" v-model="product.price" type="number" class="input" />
-      </div>
-      <div class="field">
-        <label for="productQuantity">Estoque</label>
-        <input id="productQuantity" v-model="product.quantity" type="number" class="input" />
-      </div>
-      <div class="field">
-        <label for="productDescription">Descrição</label>
-        <input id="productDescription" v-model="product.description" type="text" class="input" />
-      </div>
       <div class="fieldStatus">
         <label for="productActive">Ativo:</label>
         <input id="productActive" v-model="product.active" type="checkbox" />
@@ -33,9 +21,6 @@ export default {
     return {
       product: {
         name: '',
-        price: 0,
-        quantity: 0,
-        description: '',
         active: true
       }
     }
@@ -45,11 +30,10 @@ export default {
       let products = JSON.parse(localStorage.getItem('products')) || []
       products.push(this.product)
       localStorage.setItem('products', JSON.stringify(products))
-      console.log('Produto cadastrado:', this.product)
       this.resetForm()
     },
     resetForm() {
-      this.product = { name: '', price: 0, quantity: 0, description: '', active: true }
+      this.product = { name: '', active: true }
     }
   }
 }
