@@ -8,27 +8,15 @@
       </div>
       <div class="field">
         <label for="productPrice">Preço</label>
-        <input id="productPrice" v-model="product.price" type="number" required class="input" />
+        <input id="productPrice" v-model="product.price" type="number" class="input" />
       </div>
       <div class="field">
         <label for="productQuantity">Estoque</label>
-        <input
-          id="productQuantity"
-          v-model="product.quantity"
-          type="number"
-          required
-          class="input"
-        />
+        <input id="productQuantity" v-model="product.quantity" type="number" class="input" />
       </div>
       <div class="field">
         <label for="productDescription">Descrição</label>
-        <input
-          id="productDescription"
-          v-model="product.description"
-          type="text"
-          required
-          class="input"
-        />
+        <input id="productDescription" v-model="product.description" type="text" class="input" />
       </div>
       <div class="fieldStatus">
         <label for="productActive">Ativo:</label>
