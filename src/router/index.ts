@@ -5,6 +5,8 @@ import SeeProductsView from '../views/product/SeeProductsView.vue'
 import RegisterCustomerView from '../views/customer/RegisterCustomerView.vue'
 import SeeCustomerView from '../views/customer/SeeCustomerView.vue'
 
+import EditCustomerView from '../views/customer/EditCustomerView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,6 +29,11 @@ const router = createRouter({
       path: '/customers',
       name: 'customers',
       component: SeeCustomerView
+    },
+    {
+      path: '/edit-customer/:id',
+      name: 'edit-customer',
+      component: EditCustomerView
     }
   ]
 })
