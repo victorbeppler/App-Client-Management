@@ -3,6 +3,7 @@ import RegisterProductView from '../views/product/RegisterProductView.vue'
 import SeeProductsView from '../views/product/SeeProductsView.vue'
 
 import RegisterCustomerView from '../views/customer/RegisterCustomerView.vue'
+import SeeCustomerView from '../views/customer/SeeCustomerView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/register-customer',
       name: 'register-customer',
       component: RegisterCustomerView
+    },
+    {
+      path: '/customers',
+      name: 'customers',
+      component: SeeCustomerView
     }
   ]
 })
