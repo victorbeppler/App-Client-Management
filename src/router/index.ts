@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import RegisterProductView from '../views/product/RegisterProductView.vue'
-import SeeProductsView from '../views/product/SeeProductsView.vue'
+import SeeProductsView from '../views/product/ProductsView.vue'
+import EditProductView from '../views/product/EditProductView.vue'
 
 import RegisterCustomerView from '../views/customer/RegisterCustomerView.vue'
 import SeeCustomerView from '../views/customer/CustomersView.vue'
@@ -15,9 +17,14 @@ const router = createRouter({
       component: SeeProductsView
     },
     {
-      path: '/register-product',
-      name: 'register-product',
+      path: '/add-product',
+      name: 'add-product',
       component: RegisterProductView
+    },
+    {
+      path: '/edit-product/:id',
+      name: 'edit-product',
+      component: EditProductView
     },
     {
       path: '/add-customer',
