@@ -34,8 +34,18 @@
           </td>
           <td>
             <div class="action">
-              <button class="btn btn-edit" @click="editCustomer(customer.id)">Editar</button>
-              <button class="btn btn-delete" @click="deleteCustomer(customer.id)">Excluir</button>
+              <button class="btn btn-edit" @click="editCustomer(customer.id)" type="button">
+                <div class="container-icon">
+                  <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
+                  Editar
+                </div>
+              </button>
+              <button class="btn btn-delete" @click="deleteCustomer(customer.id)" type="button">
+                <div class="container-icon">
+                  <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
+                  Excluir
+                </div>
+              </button>
             </div>
           </td>
         </tr>
@@ -94,6 +104,13 @@ table {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.container-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 caption {
   margin-bottom: 10px;
   font-size: 24px;
@@ -111,6 +128,10 @@ td {
 th {
   background-color: gray;
   color: white;
+}
+
+.icon-size {
+  font-size: 12px;
 }
 
 tr:hover {

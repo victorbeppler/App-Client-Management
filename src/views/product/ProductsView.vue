@@ -30,8 +30,18 @@
           </td>
           <td>
             <div class="action">
-              <button class="btn btn-edit" @click="editProduct(product.id)">Editar</button>
-              <button class="btn btn-delete" @click="deleteProduct(product.id)">Excluir</button>
+              <button class="btn btn-edit" @click="editProduct(product.id)" type="button">
+                <div class="container-icon">
+                  <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
+                  Editar
+                </div>
+              </button>
+              <button class="btn btn-delete" @click="deleteProduct(product.id)" type="button">
+                <div class="container-icon">
+                  <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
+                  Excluir
+                </div>
+              </button>
             </div>
           </td>
         </tr>
