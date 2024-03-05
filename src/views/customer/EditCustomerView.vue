@@ -33,29 +33,29 @@
           Adicionar Produto
         </button>
         <!-- Lista de Produtos Adicionados -->
-          <h3>Produtos Relacionados</h3>
+        <h3>Produtos Relacionados</h3>
 
-          <table class="tb-products-related">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="product in customer.products" :key="product.id">
-                <td>{{ product.name }}</td>
-                <td>{{ product.active ? 'Ativo' : 'Inativo' }}</td>
-                <td>
-                  <button @click="removeProduct(product.id)" class="btn-remove">
-                    <font-awesome-icon :icon="['fas', 'trash']" />
-                    Remover
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="tb-products-related">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="product in customer.products" :key="product.id">
+              <td>{{ product.name }}</td>
+              <td>{{ product.active ? 'Ativo' : 'Inativo' }}</td>
+              <td>
+                <button @click="removeProduct(product.id)" class="btn-remove">
+                  <font-awesome-icon :icon="['fas', 'trash']" />
+                  Remover
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <SelectProductModal
           v-if="showProductModal"
           :selectedProducts="selectedProducts"
@@ -64,7 +64,7 @@
         />
 
         <div class="containerSaveButton">
-          <button class="buttonSave" type="submit">Salvar Cliente</button>
+          <button class="buttonSave" type="submit">Salvar</button>
         </div>
       </form>
     </div>
@@ -103,7 +103,7 @@ export default {
     removeProduct(productId) {
       this.customer.products = this.customer.products.filter((product) => product.id !== productId)
     },
-    updateCustomer() {
+    submitForm() {
       const customers = JSON.parse(localStorage.getItem('customers')) || []
       const index = customers.findIndex((customer) => customer.id === this.customer.id)
       if (index !== -1) {
