@@ -84,3 +84,45 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+/* Definições básicas */
+.input, .button, .table-display {
+  font-family: Arial, sans-serif;
+}
+
+.input, .button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.table-display {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-display th,
+.table-display td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table-display th {
+  background-color: #f4f4f4;
+}
