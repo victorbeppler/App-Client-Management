@@ -112,7 +112,7 @@ export default {
       const newCustomer = { ...this.customer, id: Date.now() }
       customers.push(newCustomer)
       localStorage.setItem('customers', JSON.stringify(customers))
-      console.log('Cliente cadastrado:', newCustomer)
+      this.$router.push('/')
       this.resetForm()
     },
     resetForm() {
