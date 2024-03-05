@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper-customers">
     <div class="header">
       <h2>Lista de Clientes</h2>
       <button class="btn btn-add" @click="addCustomer">
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style>
-.wrapper {
+.wrapper-customers {
   display: flex;
   flex-direction: column;
   align-items: center;
