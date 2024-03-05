@@ -80,6 +80,8 @@ export default {
   },
   data() {
     return {
+      showProductModal: false,
+      selectedProducts: [],
       customer: {
         id: null,
         name: '',
@@ -92,9 +94,17 @@ export default {
     }
   },
   methods: {
+    handleModalClose() {
+      this.showProductModal = false
+    },
+    addProductToSelected(product) {
+      this.selectedProducts.push(product)
+      this.customer.products.push(product)
+    },
     loadCustomer() {
       const customerId = this.$route.params.id
       const customers = JSON.parse(localStorage.getItem('customers')) || []
+
       const customerToEdit = customers.find((customer) => customer.id === parseInt(customerId))
       if (customerToEdit) {
         this.customer = { ...customerToEdit }
@@ -102,6 +112,7 @@ export default {
     },
     removeProduct(productId) {
       this.customer.products = this.customer.products.filter((product) => product.id !== productId)
+      this.selectedProducts = this.selectedProducts.filter((product) => product.id !== productId)
     },
     submitForm() {
       const customers = JSON.parse(localStorage.getItem('customers')) || []
@@ -109,7 +120,7 @@ export default {
       if (index !== -1) {
         customers[index] = { ...this.customer }
         localStorage.setItem('customers', JSON.stringify(customers))
-        this.$router.push('/customers')
+        this.$router.push('/')
       }
     }
   },
