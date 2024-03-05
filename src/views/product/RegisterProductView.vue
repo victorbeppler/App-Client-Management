@@ -1,17 +1,22 @@
 <template>
-  <div class="container">
-    <h2>Cadastro de Produto</h2>
-    <form @submit.prevent="submitForm" class="form">
-      <div class="field">
-        <label for="productName">Nome</label>
-        <input id="productName" v-model="product.name" type="text" required class="input" />
-      </div>
-      <div class="fieldStatus">
-        <label for="productActive">Ativo:</label>
-        <input id="productActive" v-model="product.active" type="checkbox" />
-      </div>
-      <button class="buttonRegister" type="submit">Cadastrar Produto</button>
-    </form>
+  <div class="page-create-product">
+    <div class="wrapper-edit-product">
+      <h2>Criar Produto</h2>
+      <form @submit.prevent="submitForm" class="form">
+        <div class="field">
+          <label for="customerName">Nome</label>
+          <input id="customerName" v-model="product.name" type="text" required class="input" />
+        </div>
+        <div class="fieldStatus">
+          <label for="customerActive">Ativo:</label>
+          <input id="customerActive" v-model="product.active" type="checkbox" />
+        </div>
+
+        <div class="containerSaveButton">
+          <button class="buttonSave" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -20,6 +25,7 @@ export default {
   data() {
     return {
       product: {
+        id: '',
         name: '',
         active: true
       }
@@ -28,70 +34,74 @@ export default {
   methods: {
     submitForm() {
       let products = JSON.parse(localStorage.getItem('products')) || []
-      products.push(this.product)
+      const newProduct = { ...this.product, id: Date.now() }
+      products.push(newProduct)
       localStorage.setItem('products', JSON.stringify(products))
       this.resetForm()
+      this.$router.push('/products')
     },
     resetForm() {
-      this.product = { name: '', active: true }
+      this.product = { name: '', active: true, id: '' }
     }
   }
 }
 </script>
 
 <style>
-.container {
+.page-create-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-edit-product {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 500px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  gap: 1rem;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.buttonSave {
+  width: 200px;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.buttonSave:hover {
+  background-color: #333;
+}
+
 .input {
   width: 100%;
-  padding: 4px;
+  padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
-.field {
+form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 10px;
 }
 
-.fieldStatus {
+.containerSaveButton {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
   width: 100%;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-.buttonRegister {
-  width: 100%;
-  padding: 4px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-  font-size: 12px;
-  letter-spacing: 2px;
-  outline: none;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  text-align: center;
+  margin-top: 20px;
 }
 </style>
