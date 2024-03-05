@@ -34,6 +34,8 @@ export default {
 .navbar-nav {
   list-style: none;
   padding: 0;
+  display: flex;
+  gap: 16px;
 }
 
 .nav-item {
@@ -51,5 +53,6 @@ export default {
 .nav-link:hover {
   background-color: #ddd;
   color: black;
+  border-radius: 8px;
 }
 </style>
