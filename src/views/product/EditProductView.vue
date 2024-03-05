@@ -9,7 +9,12 @@
         </div>
         <div class="fieldStatus">
           <label for="customerActive">Ativo:</label>
-          <input id="customerActive" v-model="product.active" type="checkbox" />
+          <input
+            id="customerActive"
+            v-model="product.active"
+            type="checkbox"
+            class="checkbox-button"
+          />
         </div>
 
         <div class="containerSaveButton">
@@ -89,6 +94,18 @@ export default {
   color: white;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.checkbox-button {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.fieldStatus {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
 .buttonSave:hover {

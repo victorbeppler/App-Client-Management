@@ -27,7 +27,12 @@
         </div>
         <div class="fieldStatus">
           <label for="customerActive">Ativo:</label>
-          <input id="customerActive" v-model="customer.active" type="checkbox" />
+          <input
+            id="customerActive"
+            v-model="customer.active"
+            type="checkbox"
+            class="checkbox-button"
+          />
         </div>
         <button class="buttonAddProduct" type="button" @click="showProductModal = true">
           Adicionar Produto
@@ -147,6 +152,18 @@ export default {
   border-radius: 10px;
   padding: 1rem;
 }
+.checkbox-button {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.fieldStatus {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
 .buttonSave {
   width: 200px;
   margin-top: 1rem;
