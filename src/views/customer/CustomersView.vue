@@ -178,8 +178,10 @@ tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%; /* De acordo com a largura da sua tabela */
-  margin: 20px auto 10px; /* Ajuste conforme necessário */
+  width: 90%; 
+  margin: 20px auto 10px; 
+    overflow-x: hidden;
+
 }
 
 h2 {

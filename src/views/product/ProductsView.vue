@@ -7,53 +7,52 @@
         Novo Produto
       </button>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>
-            <div v-if="product.active">
-              <div class="circleActive" />
-              Ativo
-            </div>
-            <div v-else>
-              <div class="circleRed" />
-              Inativo
-            </div>
-          </td>
-          <td>
-            <div class="action">
-              <button class="btn btn-edit" @click="editProduct(product.id)" type="button">
-                <div class="container-icon">
-                  <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
-                  Editar
-                </div>
-              </button>
-              <button class="btn btn-delete" @click="deleteProduct(product.id)" type="button">
-                <div class="container-icon">
-                  <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
-                  Excluir
-                </div>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="body">
+      <TableDisplay :headers="tableHeaders" :rows="products">
+        <template v-slot:name="{ row }">
+          {{ row.name }}
+        </template>
+        <template v-slot:active="{ row }">
+          <span :class="{ 'text-green': row.active, 'text-red': !row.active }">
+            {{ row.active ? 'Ativo' : 'Inativo' }}
+          </span>
+        </template>
+        <template v-slot:actions="{ row }">
+          <div class="action">
+            <button class="btn btn-edit" @click="editProduct(row.id)" type="button">
+              <div class="container-icon">
+                <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
+                Editar
+              </div>
+            </button>
+            <button class="btn btn-delete" @click="deleteProduct(row.id)" type="button">
+              <div class="container-icon">
+                <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
+                Excluir
+              </div>
+            </button>
+          </div>
+        </template>
+      </TableDisplay>
+    </div>
   </div>
 </template>
 
 <script>
+import TableDisplay from '../../components/TableDisplay.vue'
+
 export default {
+  components: {
+    TableDisplay
+  },
   data() {
     return {
+      tableHeaders: [
+        { key: 'name', label: 'Nome' },
+        { key: 'active', label: 'Status' },
+        { key: 'actions', label: 'Ações' }
+      ],
       products: []
     }
   },
@@ -89,36 +88,6 @@ export default {
   margin-top: 16px;
 }
 
-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-caption {
-  margin-bottom: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-}
-
-th,
-td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: gray;
-  color: white;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
 .btn {
   border: none;
   border-radius: 5px;
@@ -142,22 +111,8 @@ tr:hover {
   opacity: 0.8;
 }
 
-.circleActive {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: green;
-}
-.circleRed {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: red;
-}
-
-.header {
+.header,
+.body {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -185,12 +140,5 @@ h2 {
 
 .icon-plus {
   color: white;
-}
-
-.action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }
 </style>
