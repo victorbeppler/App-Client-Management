@@ -1,0 +1,22 @@
+export const mockProducts = [
+  { id: 1, name: 'Smartphone Galaxy S21', active: true },
+  { id: 2, name: 'Laptop MacBook Pro 14"', active: true },
+  { id: 3, name: 'Tablet iPad Air', active: true },
+  { id: 4, name: 'Smartwatch Series 7', active: true },
+  { id: 5, name: 'Headphones Sony WH-1000XM4', active: true },
+  { id: 6, name: 'Gaming Mouse Logitech G502', active: true },
+  { id: 7, name: 'External SSD Samsung T5', active: true },
+  { id: 8, name: 'Wireless Charger Anker 15W', active: true },
+  { id: 9, name: 'Bluetooth Speaker JBL Flip 5', active: true },
+  { id: 10, name: '4K Monitor LG Ultragear', active: true },
+  { id: 11, name: 'Graphics Tablet Wacom Intuos', active: true },
+  { id: 12, name: 'USB-C Hub Multiport Adapter', active: true },
+  { id: 13, name: 'Portable Projector Epson EF-100', active: true },
+  { id: 14, name: 'Ergonomic Keyboard Logitech Ergo K860', active: true },
+  { id: 15, name: 'Noise Cancelling Earbuds Bose QuietComfort', active: true },
+  { id: 16, name: 'Smart Thermostat Nest', active: true },
+  { id: 17, name: 'Fitness Tracker Fitbit Charge 4', active: true },
+  { id: 18, name: 'Drone DJI Mavic Air 2', active: true },
+  { id: 19, name: 'Digital Camera Canon EOS R5', active: true },
+  { id: 20, name: 'Gaming Console PlayStation 5', active: true }
+]
