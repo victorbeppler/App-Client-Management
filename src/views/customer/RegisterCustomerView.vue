@@ -27,7 +27,12 @@
         </div>
         <div class="fieldStatus">
           <label for="customerActive">Ativo:</label>
-          <input id="customerActive" v-model="customer.active" type="checkbox" />
+          <input
+            id="customerActive"
+            v-model="customer.active"
+            type="checkbox"
+            class="checkbox-button"
+          />
         </div>
         <button class="buttonAddProduct" type="button" @click="showProductModal = true">
           Adicionar Produto
@@ -35,27 +40,22 @@
         <!-- Lista de Produtos Adicionados -->
         <h3>Produtos Relacionados</h3>
 
-        <table class="tb-products-related">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="product in customer.products" :key="product.id">
-              <td>{{ product.name }}</td>
-              <td>{{ product.active ? 'Ativo' : 'Inativo' }}</td>
-              <td>
-                <button @click="removeProduct(product.id)" class="btn-remove">
-                  <font-awesome-icon :icon="['fas', 'trash']" />
-                  Remover
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <TableDisplay :headers="tableHeaders" :rows="customer.products">
+          <template v-slot:name="{ row }">
+            {{ row.name }}
+          </template>
+          <template v-slot:active="{ row }">
+            <span :class="{ 'text-green': row.active, 'text-red': !row.active }">
+              {{ row.active ? 'Ativo' : 'Inativo' }}
+            </span>
+          </template>
+          <template v-slot:actions="{ row }">
+            <button @click="removeProduct(row.id)" class="btn-remove">
+              <font-awesome-icon :icon="['fas', 'trash']" />
+              Remover
+            </button>
+          </template>
+        </TableDisplay>
 
         <SelectProductModal
           v-if="showProductModal"
@@ -73,14 +73,21 @@
 
 <script>
 import SelectProductModal from '../../components/SelectProductModal.vue'
+import TableDisplay from '../../components/TableDisplay.vue'
 
 export default {
   components: {
-    SelectProductModal
+    SelectProductModal,
+    TableDisplay
   },
   data() {
     return {
       showProductModal: false,
+      tableHeaders: [
+        { key: 'name', label: 'Nome' },
+        { key: 'active', label: 'Status' },
+        { key: 'actions', label: 'Ações' }
+      ],
       customer: {
         name: '',
         document: '',
@@ -134,6 +141,18 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.checkbox-button {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.fieldStatus {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
 .wrapper {
   margin-top: 2rem;
   display: flex;
