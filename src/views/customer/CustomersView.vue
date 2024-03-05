@@ -1,9 +1,13 @@
 <template>
   <div class="wrapper">
+    <div class="header">
+      <h2>Lista de Clientes</h2>
+      <button class="btn btn-add" @click="addCustomer">
+        <font-awesome-icon :icon="['fas', 'plus']" />
+        Novo Cliente
+      </button>
+    </div>
     <table>
-      <caption>
-        Lista de Clientes
-      </caption>
       <thead>
         <tr>
           <th>Nome</th>
@@ -29,8 +33,10 @@
             </div>
           </td>
           <td>
-            <button class="btn btn-edit" @click="editCustomer(customer.id)">Editar</button>
-            <button class="btn btn-delete" @click="deleteCustomer(customer.id)">Excluir</button>
+            <div class="action">
+              <button class="btn btn-edit" @click="editCustomer(customer.id)">Editar</button>
+              <button class="btn btn-delete" @click="deleteCustomer(customer.id)">Excluir</button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -46,6 +52,9 @@ export default {
     }
   },
   methods: {
+    addCustomer() {
+      this.$router.push({ name: 'add-customer' })
+    },
     loadCustomers() {
       this.customers = JSON.parse(localStorage.getItem('customers')) || []
     },
@@ -144,5 +153,42 @@ tr:hover {
   height: 10px;
   border-radius: 50%;
   background: red;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; /* De acordo com a largura da sua tabela */
+  margin: 20px auto 10px; /* Ajuste conforme necessário */
+}
+
+h2 {
+  margin: 0;
+}
+
+.btn-add {
+  background-color: gray;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-add:hover {
+  background-color: darkgray;
+}
+
+.icon-plus {
+  color: white;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 </style>
