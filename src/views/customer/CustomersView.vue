@@ -7,57 +7,54 @@
         Novo Cliente
       </button>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Documento</th>
-          <th>Email</th>
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="customer in customers" :key="customer.id">
-          <td>{{ customer.name }}</td>
-          <td>{{ customer.document }}</td>
-          <td>{{ customer.email }}</td>
-          <td>
-            <div v-if="customer.active">
-              <div class="circleActive" />
-              Ativo
-            </div>
-            <div v-else>
-              <div class="circleRed" />
-              Inativo
-            </div>
-          </td>
-          <td>
-            <div class="action">
-              <button class="btn btn-edit" @click="editCustomer(customer.id)" type="button">
-                <div class="container-icon">
-                  <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
-                  Editar
-                </div>
-              </button>
-              <button class="btn btn-delete" @click="deleteCustomer(customer.id)" type="button">
-                <div class="container-icon">
-                  <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
-                  Excluir
-                </div>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="body">
+      <TableDisplay :headers="tableHeaders" :rows="customers">
+        <template v-slot:name="{ row }">
+          {{ row.name }}
+        </template>
+        <template v-slot:active="{ row }">
+          <span :class="{ 'text-green': row.active, 'text-red': !row.active }">
+            {{ row.active ? 'Ativo' : 'Inativo' }}
+          </span>
+        </template>
+        <template v-slot:actions="{ row }">
+          <div class="action">
+            <button class="btn btn-edit" @click="editCustomer(row.id)" type="button">
+              <div class="container-icon">
+                <font-awesome-icon :icon="['fas', 'pencil']" class="icon-size" />
+                Editar
+              </div>
+            </button>
+            <button class="btn btn-delete" @click="deleteCustomer(row.id)" type="button">
+              <div class="container-icon">
+                <font-awesome-icon :icon="['fas', 'trash']" class="icon-size" />
+                Excluir
+              </div>
+            </button>
+          </div>
+        </template>
+      </TableDisplay>
+    </div>
   </div>
 </template>
 
 <script>
+import TableDisplay from '../../components/TableDisplay.vue'
+
 export default {
+  components: {
+    TableDisplay
+  },
   data() {
     return {
+      tableHeaders: [
+        { key: 'name', label: 'Nome' },
+        { key: 'document', label: 'Documento' },
+        { key: 'email', label: 'Email' },
+        { key: 'active', label: 'Status' },
+        { key: 'actions', label: 'Ações' }
+      ],
       customers: []
     }
   },
@@ -176,7 +173,8 @@ tr:hover {
   background: red;
 }
 
-.header {
+.header,
+.body {
   display: flex;
   justify-content: space-between;
   align-items: center;
