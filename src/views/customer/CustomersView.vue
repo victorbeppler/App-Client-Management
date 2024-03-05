@@ -168,7 +168,7 @@ h2 {
 }
 
 .btn-add {
-  background-color: gray;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;

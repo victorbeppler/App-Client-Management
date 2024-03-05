@@ -33,39 +33,39 @@
           Adicionar Produto
         </button>
         <!-- Lista de Produtos Adicionados -->
-        <div v-if="customer.products.length > 0">
-          <h3>Produtos Relacionados</h3>
+        <h3>Produtos Relacionados</h3>
 
-          <table class="tb-products-related">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="product in customer.products" :key="product.id">
-                <td>{{ product.name }}</td>
-                <td>{{ product.active ? 'Ativo' : 'Inativo' }}</td>
-                <td>
-                  <button @click="removeProduct(product.id)" class="btn-remove">
-                    <font-awesome-icon :icon="['fas', 'trash']" />
-                    Remover
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table class="tb-products-related">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="product in customer.products" :key="product.id">
+              <td>{{ product.name }}</td>
+              <td>{{ product.active ? 'Ativo' : 'Inativo' }}</td>
+              <td>
+                <button @click="removeProduct(product.id)" class="btn-remove">
+                  <font-awesome-icon :icon="['fas', 'trash']" />
+                  Remover
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
         <SelectProductModal
           v-if="showProductModal"
           :selectedProducts="selectedProducts"
           @close-modal="handleModalClose"
           @select-product="addProductToSelected"
         />
-
-        <button class="buttonRegister" type="submit">Cadastrar Cliente</button>
+        <div class="containerRegisterButton">
+          <button class="buttonRegister" type="submit">Cadastrar Cliente</button>
+        </div>
       </form>
     </div>
   </div>
@@ -112,8 +112,8 @@ export default {
       const newCustomer = { ...this.customer, id: Date.now() }
       customers.push(newCustomer)
       localStorage.setItem('customers', JSON.stringify(customers))
+      console.log('Cliente cadastrado:', newCustomer)
       this.resetForm()
-      this.$router.push('/customers')
     },
     resetForm() {
       this.customer = { name: '', document: '', email: '', phone: '', active: true, products: [] }
@@ -135,21 +135,23 @@ export default {
   align-items: center;
 }
 .wrapper {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 60%;
+  width: 60%;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 1rem;
 }
 .buttonRegister {
+  width: 200px;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  background-color: grey;
+  background-color: #007bff;
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -189,5 +191,13 @@ export default {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+.containerRegisterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
 </style>
