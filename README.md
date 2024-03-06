@@ -1,46 +1,120 @@
-# app-client-management
+# Vue.js Application com Mocks de Dados
 
-This template should help get you started developing with Vue 3 in Vite.
+Este projeto Vue.js simula uma aplicação de gerenciamento de clientes e associação de produtos utilizando dados mockados. A aplicação implementa funcionalidades de CRUD para clientes e produtos e usa `localStorage` para simular a persistência de dados.
 
-## Recommended IDE Setup
+## Resumo do Desenvolvimento
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Durante o desenvolvimento deste teste, a ênfase foi colocada na criação de um conjunto reutilizável de componentes Vue.js. A estrutura do código foi organizada para promover a reutilização e a manutenção eficiente. As decisões tomadas para a arquitetura da aplicação foram guiadas pela facilidade de extensão e pela simplicidade no gerenciamento de estado usando o `localStorage`.
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Estrutura do Projeto
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+O projeto é estruturado com os seguintes componentes principais:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- **`SelectProductModal`**: Componente responsável por pesquisar e selecionar Produtos, esse produtos são retornado para o componente PAI.
+- **`CustomerView`**: Pagina responsável por apresentar com um formato de tabela os clientes associados na aplicação, nele temos algumas funcionalidades como criar , editar e remover customers.
+- **`CreateCustomerView`**: Pagina responsável por criar clientes na aplicação.
+- **`EditCustomerView`**: Habilita a edição dos detalhes de um cliente.
+- **`ProductsView`**: Pagina responsável por apresentar em formato de tabela os produtos associados na aplicação, nele temos algumas funcionalidades como criar, editar e remover produtos.
+- **`EditProductView`**: Habilita a edição dos detalhes de um cliente.
+- **`CreateProductView`**: pagina responsável por criar produtos.
+- **`TableDisplay`**: Componente padrão para exibir tabelas de dados.
+  
+Dados mock são utilizados para simular informações de clientes (`mockCustomers`) e produtos (`mockProducts`), sendo inicializados no `localStorage` ao carregar a aplicação.
 
-## Customize configuration
+## Como Rodar o Projeto
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Siga os passos abaixo para rodar o projeto localmente:
 
-## Project Setup
+### Instalação das Dependências
 
-```sh
+Utilize o npm ou yarn para instalar as dependências do projeto:
+
 npm install
-```
+#### ou
+yarn install
 
-### Compile and Hot-Reload for Development
+### Execução do Servidor de Desenvolvimento
 
-```sh
+Inicie o servidor de desenvolvimento Vue.js:
+
 npm run dev
-```
+#### ou
+yarn dev
 
-### Type-Check, Compile and Minify for Production
 
-```sh
-npm run build
-```
+### Acesso à Aplicação
 
-### Lint with [ESLint](https://eslint.org/)
+Acesse `http://localhost:5080`
 
-```sh
-npm run lint
-```
+## Funcionalidades Implementadas
+
+- **Dados Mock**: Implementação de dados mock para clientes e produtos.
+- **Componente Modal**: Um componente reutilizável `SelectProductModal` para a seleção de produtos.
+- **CRUD de Clientes**: Interface para a adição, edição, visualização e exclusão de clientes, incluindo associação de produtos.
+
+## Tecnologias Utilizadas
+
+- Vue
+- Typescript
+- LocalStorage
+- Vue Router
+- SCSS
+- Font Awesome
+- Vue CLI
+
+
+## Melhorias Recomendadas para o Projeto
+
+### Testes Unitários e de Integração
+
+Implementar testes unitários com Vue Test Utils e Jest para validar os componentes e o fluxo da aplicação. Isso ajudará a identificar e corrigir bugs mais rapidamente e a manter a qualidade do código.
+
+
+### Componentes de Formulário Reutilizáveis
+
+Criar componentes de formulário reutilizáveis para encapsular lógica e validação, aumentando a consistência e diminuindo a duplicação de código.
+
+### Validação de Formulário Avançada
+
+Integrar uma biblioteca de validação de formulários,para aprimorar a experiência do usuário com validação do lado do cliente e feedback instantâneo.
+
+
+### Melhorias de UI/UX
+
+Conduzir testes de usabilidade para refinar a interface do usuário com base nas interações dos usuários e feedback, aprimorando a experiência geral do usuário.
+
+### Lazy Loading e Code Splitting
+
+Utilizar técnicas de carregamento preguiçoso e divisão de código com Vue Router para otimizar o desempenho da aplicação à medida que ela cresce em tamanho e complexidade.
+
+### Toast
+
+Criar componente responsável por apresentar, notificações ao usuário como:
+- Sucesso
+- Alertas
+- Erros
+
+
+
+
+## Considerações Finais
+
+Este projeto serve como um exemplo básico e introdutório para a implementação de mocks de dados em uma aplicação Vue.js. Ele é adequado para fins de desenvolvimento e testes, mas para aplicações em produção, é recomendável considerar o uso de uma base de dados real e gerenciamento de estado avançado (com Vuex ou Pinia, por exemplo).
+
+
+## Construido Por:
+
+Victor Hugo Beppler Pereira
+
+### Linkedin
+
+https://www.linkedin.com/in/victorhugobp/
+
+### Github
+
+https://github.com/victorbeppler
+
+### Portfólio
+
+https://victorbeppler.dev
